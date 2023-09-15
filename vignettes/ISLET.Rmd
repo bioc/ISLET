@@ -6,6 +6,9 @@ author:
   email: hxf155@case.edu
 - name: Qian Li
   affiliation: Department of Biostatistics, St. Jude Children's Research Hospital
+- name: Guanqun Meng
+  affiliation: Department of Population and Quantitative Health Sciences, Case Western Reserve University
+  email: gxm324@case.edu
 package: ISLET
 output:
   BiocStyle::html_document
@@ -28,7 +31,7 @@ htmltools::img(src = knitr::image_uri("islet_hex_2.png"),
 
 ## Install ISLET
 
-To install the package, start R (version 4.1.0 or higher) and enter:
+To install the package, start R (version 4.2.0 or higher) and enter:
 
 ```{r, eval = FALSE, message = FALSE}
 if (!require("BiocManager", quietly = TRUE))
@@ -188,6 +191,52 @@ The result `age.test` is a matrix of p-values, in the dimension of feature by ce
 ```{r, eval = TRUE, message = FALSE}
 #View the test p-values
 head(age.test)
+```
+
+# ***imply***: improving cell-type deconvolution accuracy using personalized reference profiles
+
+To use imply to improve cell proportions by incorporating subject-specific and cell-type-specific (personalized) reference panels, you need to start with an input file organized into `SummarizedExperiment` objects, as previously described for ISLET. In this example, we will use the `GE600` dataset for illustration.
+
+This initial step is crucial to prepare your input data for the downstream cell deconvolution using the `implyDataPrep` function. During this preparation step, the data in `SummarizedExperiment` format will undergo the following processing:
+
+- Extraction of expression values from both cases and controls.
+- Extraction of the initial cell proportions, preferably obtained from CIBERSORT.
+- Determination of the total number of cell types.
+- Extraction of the total number of subjects for case and control, respectively.
+- Determination of the total number of samples.
+
+By executing this preparation step, your data will be in the ideal format for subsequent personalized deconvolution with `imply`. 
+
+```{r, eval = TRUE, message = FALSE}
+dat123 <- implyDataPrep(sim_se=GE600_se)
+```
+
+The output of this preparation step is an S4 object containing the extracted information. You can easily review this object to ensure that your data is correctly prepared.
+
+```{r, eval = TRUE, message = FALSE}
+dat123
+```
+
+With the curated input `dat123` from the previous step, now we can use `imply` to conduct personalized cell deconvolution to obtain the improved cell proportions. This process can be achieved by running:
+
+```{r, eval = TRUE, message = FALSE}
+#Use imply for deconvolution
+result <- imply(dat123)
+```
+
+The `result` is a list of deconvolution results returned by `imply`, which includes two elements: `p.ref` and `imply.prop`. `p.ref` is the estimated personalized reference panels. It is an array of dimension \emph{G} by \emph{K} by \emph{N}, where \emph{G} is the total number of genetic features, \emph{K} is the total number of cell types, and \emph{N} is the total number of subjects. `imply.prop` is the updated cell proportion results improved by personalized reference panels from \code{p.ref}. It is a `data.frame` of \emph{T} by \emph{K}, where \emph{T} is the total number of samples across all subjects.
+
+The outputs and can be extracted as shown below:
+```{r, eval = TRUE, message = FALSE}
+#View the subject-specific and cell-type-specific reference panels solved 
+#by linear mixed-effect models of the first subject
+result$p.ref[,,1]
+```
+
+```{r, eval = TRUE, message = FALSE}
+#View the improved cell deconvolution results
+head(result$imply.prop)
+tail(result$imply.prop)
 ```
 
 # Session info {.unnumbered}

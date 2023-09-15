@@ -21,4 +21,12 @@ outputSol <- setClass("outputSol", slots=c(case.ind.ref="list",
                                            mLLK="numeric"
                                            )
                       )
-
+### imply add
+implyS4 <- setClass("implyS4",slots = c(raw_count = "data.frame",
+                                        K="numeric",
+                                        NS="integer",
+                                        case_num="numeric",
+                                        ctrl_num="numeric",
+                                        NU="numeric",
+                                        ini.prop = "matrix",
+                                        metadata = 'data.frame'))

@@ -10,7 +10,7 @@ dataPrepSlope(dat_se)
 
 \arguments{
   \item{dat_se}{
-A \code{SummarizedExperiment} object containing both case and control group. It should contain the observed feature by sample matrix, group label (case or ctrl) for each sample, subject IDs for each sample, a slope variable for each sample, and cell type proportions for each sample. The feature by sample matrix is stored in the assay, while the remaining components are stored in the colData slot. In the colData slot, the group label (case or ctrl) take the first column, subject IDs take the second column, the slope variable takes the third column, and the cell type proportions take the remaining columns. Subject IDs need to be sorted before using the \code{dataPrepSlope} function.
+A \code{SummarizedExperiment} object containing both case and control group. It should contain the observed feature by sample matrix, group label (case or ctrl) for each sample, subject IDs for each sample, a slope variable for each sample, and cell type proportions for each sample. The feature by sample matrix is stored in the \code{count} assay, while the remaining components are stored in the colData slot. In the colData slot, the group label (case or ctrl) take the first column, subject IDs take the second column, the slope variable takes the third column, and the cell type proportions take the remaining columns. Subject IDs need to be sorted before using the \code{dataPrepSlope} function.
 }
 }
 

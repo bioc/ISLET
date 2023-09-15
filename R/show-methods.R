@@ -36,6 +36,28 @@ setMethod("show", "outputSol",
           }
 )
 
+###############
+setMethod("show", "implyS4",
+          function(object){
+            cat("First couple of elements from samples:", "\n")
+            print(object@raw_count[seq_len(10), seq_len(10)])
+            cat("Total cell type number:", "\n")
+            print(object@K)
+            cat("Cell type categories:", "\n")
+            print(colnames(object@ini.prop))
+            cat("Total case subjects and ctrl subjects:","\n")
+            print(c(object@case_num, object@ctrl_num))
+            cat("Total sample number and subject number:", "\n")
+            print(c(object@NS, object@NU))
+            cat("First couple initial cell proportion, ideally solved by CIBERSORT:", "\n")
+            print(head(object@ini.prop))
+            cat("First and last few group labels and subject IDs samples:", "\n")
+            print(rbind(head(object@metadata),
+                        tail(object@metadata)))
+          }
+)
+###################
+
 
 caseEst<-function(res.sol){
     est <- res.sol@case.ind.ref

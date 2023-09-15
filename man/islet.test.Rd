@@ -23,7 +23,7 @@ An instance of \code{BiocParallelParam} class, e.g. MulticoreParam, SnowParam, S
 This function implement a LRT, and run individually for each cell type, and then aggregate the results together into a matrix.
 }
 \value{
- \item{}{A p-value matrix, in the dimension of feature by cell type. Each element is the LRT p-value, by contrasting case group and control group, for one feature in one cell type.}
+ A p-value matrix, in the dimension of feature by cell type. Each element is the LRT p-value, by contrasting case group and control group, for one feature in one cell type.
 }
 
 

@@ -12,3 +12,13 @@ import('BiocGenerics')
 importFrom("stats", "pchisq")
 importFrom("methods", "is")
 importFrom("methods", "new")
+# imply dependencies
+import(lme4)
+import(nnls)
+importFrom("purrr","map_df")
+importFrom("abind","abind")
+# imply functions
+export('implyDataPrep')
+export('imply')
+#export('lme_fml')
+#export('lmer_deconv')
