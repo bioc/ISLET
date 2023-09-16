@@ -1,7 +1,7 @@
 Package: ISLET
 Type: Package
 Title: Individual-Specific ceLl typE referencing Tool 
-Version: 1.3.6
+Version: 1.3.7
 Date: 2023-09-15
 Authors@R: c(person("Hao", "Feng", role = c("aut", "cre"),email = "hxf155@case.edu",comment=c(ORCID="0000-0003-2243-9949")),
              person("Qian", "Li", role = "aut",email = "Qian.Li@STJUDE.ORG"),
@@ -10,7 +10,7 @@ Description: ISLET is a method to conduct signal deconvolution for general -omic
 License: GPL-2
 Depends: R(>= 4.2.0), Matrix, parallel, BiocParallel, SummarizedExperiment, BiocGenerics, lme4, nnls 
 Imports: stats, methods, purrr, abind
-Suggests: BiocStyle, knitr, rmarkdown, htmltools, RUnit
+Suggests: BiocStyle, knitr, rmarkdown, htmltools, RUnit, dplyr
 Collate: utils.R dataprep.R dataprep_slope.R islet.est.R islet.solve.R islet.test.R AllClasses.R show-methods.R imply_prep.R imply.R
 biocViews: Software, RNASeq, Transcriptomics, Transcription, Sequencing, GeneExpression, DifferentialExpression, DifferentialMethylation
 Encoding: UTF-8
